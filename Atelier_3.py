@@ -155,7 +155,60 @@ outputs:
     moyenne=res/index
     return moyenne
 
-print(moy_sup([12,5,3,15], 4))
+#print(moy_sup([12,5,3,15], 4))
+
+def val_max(L:list) -> int:
+    
+    """prend en paramètre une liste d'entiers et retourne la valeur
+maximale de cette liste
+
+inputs:
+    L: [int]
+    
+outputs:
+    max: int"""
+    
+    if L==[]:
+        max=0
+    else:
+        max=L[0]
+        for i in L:
+            if i>max:
+                max=i
+        return max
+
+#print(val_max([]))
+
+def ind_max(L:list) -> int:
+    
+    """prend en paramètre une liste d'entiers et retourne l'indice
+de l'élément maximal de cette liste
+
+inputs:
+    L: [int]
+    
+outputs:
+    ind_max: int"""
+    if L==[]:
+        max=0
+    else:
+        max=L[0]
+        for i in L:
+            if i>max:
+                max=i
+            ind_max=L.index(max)
+        
+        return ind_max
+
+print(ind_max([28, 19, 15]))
+
+#Exercice 2
+
+
+
+
+    
+    
     
     
 
