@@ -217,7 +217,7 @@ outputs:
     
     index_e:int"""
     if L==[]:
-        res="Liste vide"
+        res=0
     else:
         res=-1
         index_e=L[0]
@@ -243,7 +243,7 @@ outputs:
     index_e:int"""
     
     if L==[]:
-        res="Liste vide"
+        res=0
     else:
         res=-1
         index_e=L[0]
@@ -278,7 +278,7 @@ entier e, et retourne le nombre d'occurrences de l'entier e dans la liste L
 
     """
     if L==[]:
-        res="Liste vide"
+        res=0
     else:
         occurence_e=0
         res=0
@@ -305,7 +305,7 @@ booléen vrai si la liste est triée par ordre croissant, faux sinon version for
     res : bool
     """
     if L==[]:
-        res="Liste vide"
+        res=False
     else:
         res=True
         for i in range(1,len(L)):
@@ -332,7 +332,7 @@ booléen vrai si la liste est triée par ordre croissant, faux sinon version whi
     """
     
     if L==[]:
-        res="Liste vide"
+        res=0
     else:
         i=0
         res=True
@@ -342,7 +342,7 @@ booléen vrai si la liste est triée par ordre croissant, faux sinon version whi
             i+=1   
     return res
     
-print(est_triee_while([0, 1, 2 , 3]))   
+#print(est_triee_while([0, 1, 2 , 3]))   
 
 def position_tri(L:list, e:int) -> int:
     """
@@ -361,7 +361,7 @@ def position_tri(L:list, e:int) -> int:
     """
 
     if L==[]:
-        res="Liste vide"
+        res=0
     else:
         res=-1
         index_e=L[0]
