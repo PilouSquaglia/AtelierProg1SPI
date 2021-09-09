@@ -241,6 +241,7 @@ inputs:
 outputs:
     
     index_e:int"""
+    
     if L==[]:
         res="Liste vide"
     else:
@@ -256,7 +257,67 @@ outputs:
             i+=1   
     return res
 
-print(position_while([4,3,6], 6))
+#print(position_while([4,3,6], 6))
+
+def nb_occurence(L:list, e:int) -> int:
+    """
+    admet en paramètres une liste L d'entiers et un
+entier e, et retourne le nombre d'occurrences de l'entier e dans la liste L
+
+    Parameters
+    ----------
+    L : list
+       
+    e : int
+        
+
+    Returns
+    -------
+    res : int
+        DESCRIPTION.
+
+    """
+    if L==[]:
+        res="Liste vide"
+    else:
+        occurence_e=0
+        res=0
+        for i in L:
+            if i==e:
+                occurence_e+=1
+                res=occurence_e
+    return res
+    
+#(nb_occurence([], 0))
+
+def est_triee(L:list) -> bool:
+    """
+    admet en paramètres une liste L d'entiers et retourne un
+booléen vrai si la liste est triée par ordre croissant, faux sinon.
+
+    Parameters
+    ----------
+    L : [int]
+        
+
+    Returns
+    -------
+    res : bool
+    """
+    if L==[]:
+        res="Liste vide"
+    else:
+        res=True
+        for i in range(1,len(L)):
+            if L[i]<L[i-1]:
+                res=False
+    return res
+
+#print(est_triee([0, 1, 2, 3]))
+
+
+
+
 
 
 
