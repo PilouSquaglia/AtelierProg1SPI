@@ -225,7 +225,7 @@ outputs:
             if i==e:
                 index_e=i
                 res=L.index(index_e)
-                return res
+    return res
 
 #print(position_for([9, 5, 7], 7))
 
@@ -342,11 +342,34 @@ booléen vrai si la liste est triée par ordre croissant, faux sinon version whi
             i+=1   
     return res
     
-#print(est_triee_while([0, 1, 4, 3]))   
+print(est_triee_while([0, 1, 2 , 3]))   
 
-def position_tri
+def position_tri(L:list, e:int) -> int:
+    """
+    
 
+    Parameters
+    ----------
+    L : [int]
+    e : int
 
+    Returns
+    -------
+    res : int
+        
+
+    """
+
+    if L==[]:
+        res="Liste vide"
+    else:
+        res=-1
+        index_e=L[0]
+        for i in L:
+            if i==e:
+                index_e=i
+                res=L.index(index_e)
+    return res
 
 
 
