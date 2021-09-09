@@ -200,10 +200,63 @@ outputs:
         
         return ind_max
 
-print(ind_max([28, 19, 15]))
+#print(ind_max([28, 19, 15]))
 
 #Exercice 2
 
+def position_for(L:list, e:int) -> int:
+    
+    """admet en paramètres une liste L d'entiers et un entier e et
+retourne l'indice de l'entier e dans la liste L.
+
+inputs: 
+    L:[int]
+    e:int
+    
+outputs:
+    
+    index_e:int"""
+    if L==[]:
+        res="Liste vide"
+    else:
+        res=-1
+        index_e=L[0]
+        for i in L:
+            if i==e:
+                index_e=i
+                res=L.index(index_e)
+                return res
+
+#print(position_for([9, 5, 7], 7))
+
+def position_while(L:list, e:int) -> int:
+    
+    """admet en paramètres une liste L d'entiers et un entier e et
+retourne l'indice de l'entier e dans la liste L.
+
+inputs: 
+    L:[int]
+    e:int
+    
+outputs:
+    
+    index_e:int"""
+    if L==[]:
+        res="Liste vide"
+    else:
+        res=-1
+        index_e=L[0]
+        i=0
+        cond=True
+        while i<len(L) and cond:
+            if L[i]==e:
+                index_e=L[i]
+                cond=False 
+                res=L.index(index_e)
+            i+=1   
+    return res
+
+print(position_while([4,3,6], 6))
 
 
 
