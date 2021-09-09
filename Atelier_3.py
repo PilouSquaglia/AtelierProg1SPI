@@ -290,10 +290,10 @@ entier e, et retourne le nombre d'occurrences de l'entier e dans la liste L
     
 #(nb_occurence([], 0))
 
-def est_triee(L:list) -> bool:
+def est_triee_for(L:list) -> bool:
     """
     admet en paramètres une liste L d'entiers et retourne un
-booléen vrai si la liste est triée par ordre croissant, faux sinon.
+booléen vrai si la liste est triée par ordre croissant, faux sinon version for.
 
     Parameters
     ----------
@@ -313,9 +313,38 @@ booléen vrai si la liste est triée par ordre croissant, faux sinon.
                 res=False
     return res
 
-#print(est_triee([0, 1, 2, 3]))
+#print(est_triee_for([0, 1, 2, 3]))
 
+def est_triee_while(L:list) -> bool:
+    """
+    admet en paramètres une liste L d'entiers et retourne un
+booléen vrai si la liste est triée par ordre croissant, faux sinon version while.
 
+    Parameters
+    ----------
+    L : [int]
+
+    Returns
+    -------
+   res : bool
+        
+
+    """
+    
+    if L==[]:
+        res="Liste vide"
+    else:
+        i=0
+        res=True
+        while i<len(L)-1 and res:
+            if L[i]>L[i+1]:
+                res=False 
+            i+=1   
+    return res
+    
+#print(est_triee_while([0, 1, 4, 3]))   
+
+def position_tri
 
 
 
