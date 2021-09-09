@@ -4,8 +4,6 @@ Created on Mon Sep  6 14:23:53 2021
 
 @author: Pilou
 """
-#TEST
-
 #Exercice 1
 def salaire():
     
