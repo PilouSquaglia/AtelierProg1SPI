@@ -365,11 +365,49 @@ def position_tri(L:list, e:int) -> int:
     else:
         res=-1
         index_e=L[0]
-        for i in L:
-            if i==e:
-                index_e=i
+        i=len(L)/2
+        while res!=e:
+            if L[i]>e:
+                index_e=L[i]
                 res=L.index(index_e)
+                i/=2
+                
+    #A finir
     return res
+
+def a_repetition(lst:list) -> bool:
+    """
+    admet en paramètres une liste lst d'entiers et retourne
+un booléen True si la liste lst comporte des répétitions de valeurs et False sinon
+    
+
+    Parameters
+    ----------
+    lst : list
+    
+    Returns
+    -------
+    res : bool
+        DESCRIPTION.
+
+    """
+    lst_t=[]
+    i=0
+    res=False
+    while i<len(lst) and res==False:
+        if lst[i] not in lst_t:
+            lst_t.append(lst[i])
+        else:
+            res=True
+        i+=1
+    return res 
+
+#print(a_repetition([0, 1, 4, 1]))
+        
+            
+            
+            
+                
 
 
 
