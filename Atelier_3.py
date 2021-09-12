@@ -403,7 +403,50 @@ un booléen True si la liste lst comporte des répétitions de valeurs et False 
     return res 
 
 #print(a_repetition([0, 1, 4, 1]))
+
+
+#Exercice 3
+
+def separer(lst:list) -> list:
+    """
+    prend en paramètre une liste d'entiers lst et retourne la
+        liste lst_sep avec les nombre négatifs à gauche,
+            les nombres positifs à droite et les
+                nombres nuls au milieu
+    
+
+    Parameters
+    ----------
+    lst : list[int]
+    
+    Returns
+    -------
+    lst_sep : list[int]
+
+    """
+    lst_sep=[]
+    lst_n=[]
+    lst_p=[]
+    i=0
+    while i<len(lst):
+        if lst[i]<0:
+            lst_sep.append(lst[i])
+        elif lst[i]==0:
+             lst_n.append(lst[i])
+        elif lst[i]>0:
+             lst_p.append(lst[i])
+        i+=1
+    lst_sep.extend(lst_n)
+    lst_sep.extend(lst_p)
+    return lst_sep
+
+print(separer([4, 8, -2,-3,-1, 0, -7, 0, 6, 5 ]))                
         
+            
+    
+    
+        
+
             
             
             
