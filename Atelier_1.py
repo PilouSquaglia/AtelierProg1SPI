@@ -38,13 +38,14 @@ def lire_caractere():
     code_ascii = ord(caractere) #On récupere le code ASCII du caractère int
     
     if code_ascii>=48 and code_ascii<=57:
-         return "Le caractère est un chiffre"
+         res= "Le caractère est un chiffre"
     if code_ascii>=65 and code_ascii<=90:
-         return "Le caractère est en majuscule"
+         res= "Le caractère est en majuscule"
     if code_ascii>=97 and code_ascii<=122:
-         return "Le caractère est en minuscule"
+         res= "Le caractère est en minuscule"
     else :
-        return "Le caractère est un caractère spécial"
+        res= "Le caractère est un caractère spécial"
+    return res
     
 #print(lire_caractere())
 

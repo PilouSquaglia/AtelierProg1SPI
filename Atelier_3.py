@@ -86,13 +86,13 @@ outputs:
     
     somme=0
     if L==[]:
-        moyenne=0
+        moy=0
     else:
         for i in L:
             somme+=i
-            moyenne=somme/len(L)
+            moy=somme/len(L)
     
-    return moyenne
+    return moy
 
 #print(moyenne([20,9,100]))
 
@@ -144,7 +144,7 @@ inputs:
     e: int
     
 outputs:
-    moyenne: float"""
+    moy: float"""
 
     res=0
     index=0
@@ -152,8 +152,8 @@ outputs:
         if i>e:
             res+=i
             index+=1
-    moyenne=res/index
-    return moyenne
+    moy=res/index
+    return moy
 
 #print(moy_sup([12,5,3,15], 4))
 
@@ -166,16 +166,16 @@ inputs:
     L: [int]
     
 outputs:
-    max: int"""
+    maxi: int"""
     
     if L==[]:
-        max=0
+        maxi=0
     else:
-        max=L[0]
+        maxi=L[0]
         for i in L:
-            if i>max:
-                max=i
-        return max
+            if i>maxi:
+                maxi=i
+    return maxi
 
 #print(val_max([]))
 
@@ -190,7 +190,7 @@ inputs:
 outputs:
     ind_max: int"""
     if L==[]:
-        max=0
+        ind_max=0
     else:
         max=L[0]
         for i in L:
@@ -198,7 +198,7 @@ outputs:
                 max=i
             ind_max=L.index(max)
         
-        return ind_max
+    return ind_max
 
 #print(ind_max([28, 19, 15]))
 
@@ -432,17 +432,36 @@ def separer(lst:list) -> list:
         if lst[i]<0:
             lst_sep.append(lst[i])
         elif lst[i]==0:
-             lst_n.append(lst[i])
+            lst_n.append(lst[i])
         elif lst[i]>0:
-             lst_p.append(lst[i])
+            lst_p.append(lst[i])
         i+=1
     lst_sep.extend(lst_n)
     lst_sep.extend(lst_p)
     return lst_sep
 
-print(separer([4, 8, -2,-3,-1, 0, -7, 0, 6, 5 ]))                
+#print(separer([4, 8, -2,-3,-1, 0, -7, 0, 6, 5 ]))                
         
-            
+
+#Exercice 4
+
+def histo(lst_f:list) -> list:
+    """
+    admet en paramètre la liste d'entiers lst_f définissant une fonction et renvoie une
+liste d'entiers lst_h représentant l'histogramme de lst_f
+    
+
+    Parameters
+    ----------
+    lst_f : list[int]
+
+    Returns
+    -------
+    res : list[int]
+        DESCRIPTION.
+
+    """
+    
     
     
         
