@@ -5,7 +5,7 @@ Created on Thu Sep  9 11:39:31 2021
 @author: Pilou
 """
 
-def somme1(L:list) -> int:
+def somme1(L:[int]) -> int:
     
     """Admet en paramètre une liste
 d'entiers L et retourne la somme des valeurs de la liste
@@ -21,7 +21,7 @@ outputs:
         somme+=i
     return somme
 
-def somme2(L:list) -> int:
+def somme2(L:[int]) -> int:
     
     """Admet en paramètre une liste
 d'entiers L et retourne la somme des valeurs de la liste
@@ -37,7 +37,7 @@ outputs:
         somme+=L[i]
     return somme
 
-def somme3(L:list) -> int:
+def somme3(L:[int]) -> int:
     
     """Admet en paramètre une liste
 d'entiers L et retourne la somme des valeurs de la liste
@@ -89,7 +89,7 @@ outputs:
 
 #print(moyenne([20,9,100]))
 
-def nb_sup(L:int, e:int) -> str:
+def nb_sup(L:list, e:int) -> int:
     
     """admet en paramètre une liste d'entiers L et un entier e et
 retourne le nombre de valeurs strictement supérieures à e
@@ -99,16 +99,16 @@ inputs:
     e: int
     
 outputs:
-    : str"""
-    res=0
+    res : int"""
+    compt=0
     for i in L:
         if i>e:
-            res+=1
-    return "Il y a {} nombre(s) strictement superieur à {} dans la liste {}".format(res, e, L)
-
+            compt+=1
+    #return "Il y a {} nombre(s) strictement superieur à {} dans la liste {}".format(compt, e, L)
+    return compt
 #print(nb_sup([20,9,100], 1000))
 
-def nb_sup2(L:int, e:int) -> int:
+def nb_sup2(L:int, e:int) -> str:
     
     """admet en paramètre une liste d'entiers L et un entier e et
 retourne le nombre de valeurs strictement supérieures à e
@@ -118,12 +118,12 @@ inputs:
     e: int
     
 outputs:
-    : str"""
-    res=0
+    res : str"""
+    compt=0
     for i in range(len(L)):
         if L[i]>e:
-            res+=1
-    return "Il y a {} nombre(s) strictement superieur à {} dans la liste {}".format(res, e, L)
+            compt+=1
+    return "Il y a {} nombre(s) strictement superieur à {} dans la liste {}".format(compt, e, L)
 
 #print(nb_sup2([20,9,100], 10)) 
 
@@ -139,13 +139,17 @@ inputs:
 outputs:
     moy: float"""
 
-    res=0
-    index=0
-    for i in L:
-        if i>e:
-            res+=i
-            index+=1
-    moy=res/index
+    somme=0
+    compt=0
+    if L==[]:
+        moy=0
+    else:
+        moy=0
+        for i in L:
+            if i>e:
+                somme+=i
+                compt+=1
+                moy=somme/compt 
     return moy
 
 #print(moy_sup([12,5,3,15], 4))
@@ -189,11 +193,11 @@ outputs:
         for i in L:
             if i>max:
                 max=i
-            ind_max=L.index(max)
+        ind_max=L.index(max)
         
     return ind_max
 
-#print(ind_max([28, 19, 15]))
+#print(ind_max([28, 19, 115]))
 
 #Exercice 2
 
@@ -245,12 +249,12 @@ outputs:
         while i<len(L) and cond:
             if L[i]==e:
                 index_e=L[i]
-                cond=False 
+                cond=False
                 res=L.index(index_e)
-            i+=1   
+            i+=1
     return res
 
-#print(position_while([4,3,6], 6))
+#print(position_while([4,3,6], 4))
 
 def nb_occurence(L:list, e:int) -> int:
     """
