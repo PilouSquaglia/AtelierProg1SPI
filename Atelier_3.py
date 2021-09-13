@@ -329,7 +329,7 @@ booléen vrai si la liste est triée par ordre croissant, faux sinon version whi
     """
     
     if L==[]:
-        res=0
+        res=False
     else:
         i=0
         res=True
@@ -455,17 +455,124 @@ liste d'entiers lst_h représentant l'histogramme de lst_f
 
     Returns
     -------
-    res : list[int]
+    lst_h : list[int]
         DESCRIPTION.
 
     """
-    
-    
-    
-        
+    lst_h=[]
+    maxi=val_max(lst_f)
+    for i in range(0,maxi+1):
+        occ=nb_occurence(lst_f, i)
+        lst_h.append(occ)
+    return lst_h
 
-            
-            
+#print(histo([7,4,6,5,7]))
+
+def est_injective(lst_f:list) -> bool:
+    """
+    renvoie la valeur True si la fonction représentée par la liste lst_f est une injection.
+Dans le cas contraire, elle renvoie False
+
+    Parameters
+    ----------
+    lst_f : list
+
+    Returns
+    -------
+    res : bool
+        DESCRIPTION.
+
+    """
+    lst_h=histo(lst_f)
+    cond=True
+    i=0
+    while i<len(lst_h) and cond:
+        if lst_h[i]>1:
+            res=False
+            cond=False
+        else:
+            res=True  
+        i+=1
+    return res
+    
+    
+#print(est_injective([7,4,6,5,7])) 
+
+def est_surjective(lst_f:list) -> bool:
+    """
+    renvoie la valeur True si la fonction représentée par la liste lst_f est une
+surjection. Dans le cas contraire, elle renvoie False
+
+    Parameters
+    ----------
+    lst_f : list
+
+    Returns
+    -------
+    res : bool
+
+    """   
+    lst_h=histo(lst_f)    
+    cond=True
+    i=0
+    while i<len(lst_h) and cond:
+        if lst_h[i]<1:
+            res=False
+            cond=False
+        else:
+            res=True  
+        i+=1
+    return res   
+
+#print(est_surjective([4,0,2,1,3]))   
+
+def est_bijective(lst_f:list) -> bool:
+    """
+    renvoie la valeur True si la fonction représentée par la liste lst_f est une bijection.
+Dans le cas contraire, elle renvoie False
+
+    Parameters
+    ----------
+    lst_f : list
+
+    Returns
+    -------
+    res : bool
+        DESCRIPTION.
+
+    """       
+    if est_injective(lst_f) and est_surjective(lst_f):
+        res=True
+    else:
+        res=False
+    return res
+
+#print(est_bijective([4,0,2,1,3])) 
+
+#Question 2
+
+def affiche_histo(lst_f:list):
+    """
+    
+
+    Parameters
+    ----------
+    lst_f : list
+
+    Returns
+    -------
+    None.
+
+    """
+    lst_h=histo(lst_f)
+    print("TEST HISTOGRAMME")
+    print("\nF = {}".format(lst_f))
+    print("\nHISTOGRAMME")
+    for i in range(0, 9):
+        print("\n")
+    
+affiche_histo([1, 5, 5, 5, 9, 11, 11, 15, 15, 15])
+    
             
                 
 
