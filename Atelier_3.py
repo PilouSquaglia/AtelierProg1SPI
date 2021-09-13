@@ -19,7 +19,6 @@ outputs:
     
     for i in L:
         somme+=i
-        
     return somme
 
 def somme2(L:list) -> int:
@@ -36,7 +35,6 @@ outputs:
     
     for i in range(len(L)):
         somme+=L[i]
-        
     return somme
 
 def somme3(L:list) -> int:
@@ -55,8 +53,6 @@ outputs:
         somme+=L[i]
         i+=1
     return somme
-    
-
 
 def test_exercice1 ():
     print("TEST SOMME")
@@ -68,8 +64,6 @@ def test_exercice1 ():
     #test somme 129
     S=[20,9,100]
     print("Test somme 129 : ", somme3(S))
-    
-    
     
 #test_exercice1()
 
@@ -91,7 +85,6 @@ outputs:
         for i in L:
             somme+=i
             moy=somme/len(L)
-    
     return moy
 
 #print(moyenne([20,9,100]))
