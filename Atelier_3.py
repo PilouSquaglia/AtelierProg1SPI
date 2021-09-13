@@ -568,14 +568,15 @@ def affiche_histo(lst_f:list):
     print("TEST HISTOGRAMME")
     print("\nF = {}".format(lst_f))
     print("\nHISTOGRAMME")
-    for i in range(0, 9):
-        print("\n")
+    for i in range(0, len(lst_h)):
+        for j in range(0,lst_h[i]):
+            print("\n#")
+        print("|--| \n {}".format(i), end='')
+        
     
 affiche_histo([1, 5, 5, 5, 9, 11, 11, 15, 15, 15])
     
             
-                
-
 
 
     
