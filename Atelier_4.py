@@ -22,12 +22,27 @@ avec la première lettre seulement en majuscule.
         DESCRIPTION.
 
     """
-    ch_res=""
-    for e in str_arg:
-        print(e)
-        while e!=' ':
-            ch_res+=e.upper()
-            print(ch_res)
-    return ch_res
+    maj = str_arg.split(" ")
+    return maj[0].upper() + " " + maj[1].capitalize()
+
+
 
 print(full_name("bisgambiglia paul"))            
+
+
+def is_mail(str_arg:str) -> (int,int):
+    """
+    prend en paramètre une chaine de
+caractère de type adresse mail ‘bisgambiglia@univ-corse.fr’ et qui renvoie un tuple composé
+des codes suivants : (validité, code erreur)
+
+    Parameters
+    ----------
+    str_arg : str
+
+    Returns
+    -------
+    res : (int,int)
+
+    """
+    

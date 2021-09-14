@@ -13,11 +13,11 @@ def test_full_name():
     res="#####ECHEC#####"
     test=attendu==full_name(nom)
     
-    print("Test avec {}, attendu : {}".format(nom, attendu))
-    print("test")
+    print("Test avec {}, \nAttendu : {} \nResultat : {}".format(nom, attendu, full_name(nom)))
+    print(test)
     
     if test:
-        res="#####ECHEC#####"
+        res="#####SUCCES#####"
     return res
         
-    
+print(test_full_name())
