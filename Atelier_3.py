@@ -437,7 +437,7 @@ def separer(lst:list) -> list:
     lst_sep.extend(lst_p)
     return lst_sep
 
-#print(separer([4, 8, -2,-3,-1, 0, -7, 0, 6, 5 ]))                
+#print(separer([-1, 2, 0, -3, 4, 6, -7]))                
         
 
 #Exercice 4
@@ -574,16 +574,144 @@ def affiche_histo(lst_f:list):
         print("|--| \n {}".format(i), end='')
         
     
-affiche_histo([1, 5, 5, 5, 9, 11, 11, 15, 15, 15])
+#affiche_histo([1, 5, 5, 5, 9, 11, 11, 15, 15, 15])
     
-            
+import matplotlib.pyplot as plt           
 
+def affiche_histo_plt(lst_f:list) -> bool:
+    
+    print(plt.hist(lst_f))
+    
+#affiche_histo_plt([1, 5, 5, 5, 9, 11, 11, 15, 15, 15])
+    
+    
+#Exercice 5
 
-    
-    
-    
-    
+import random
 
+def test_present(present:callable) -> bool:
+    """
+    admet en paramètres une liste d'entiers lst et un nombre entier e 
+et retourne un booléen True si l'élément e est présent dans la liste lst et False sinon
+
+    Parameters
+    ----------
+    present : callable
+
+    Returns
+    -------
+   res : bool
+
+    """
+    #Test liste vide
+    res1=False
+    lst=[]
+    e=random.random()
+    test=present(lst, e)
+    if test:
+        print("ECHEC : test liste vide")
+    else:
+        print("SUCCES : test liste vide")
+        res1=True
+    
+    #Tests sur plusieurs cas
+    
+    lst_test=[1, 5, 5, 5, 9, 11, 11, 15, 15, 15]
+    res2=False
+    e=lst_test[0]
+    test=present(lst, e)
+    if test:
+        print("ECHEC : test debut")
+    else:
+        print("SUCCES : test debut")
+        res2=True
+        
+    res3=False    
+    e=lst_test[9]
+    test=present(lst, e)
+    if test:
+        print("ECHEC : test fin")
+    else:
+        print("SUCCES : test fin")
+        res3=True
+    
+    res4=False    
+    e=lst_test[4]
+    test=present(lst, e)
+    if test:
+        print("ECHEC : test milieu")
+    else:
+        print("SUCCES : test milieu")
+        res4=True
+     
+    res5=False    
+    e=10
+    test=present(lst, e)
+    if test:
+        print("ECHEC : test absence")
+    else:
+        print("SUCCES : test absence")
+        res5=True
+        
+    if res1 and res2 and res3 and res4 and res5:
+        res=True
+    return res
+        
+#VERSION 1
+
+#La boucle s'arrete si le premier élément est égale à e 
+def present1(lst, e) :
+    for i in range (0, len(lst), 1) :
+        if (lst[i] == e) :
+            return(True)
+ #      else :             
+#            return (False)
+    return (False) 
+
+#VERSION 2
+
+#b doit être initialisé à False et le else peut-être supprimé
+def present2(lst, e) :
+#    b=True
+    b=False 
+    for i in range (0, len(lst), 1) : 
+        if (lst[i] == e) :
+            b=True
+#        else :       
+#           b=False
+    return (b)
+
+#VERSION 3
+
+#La variable b est inutilisé, et la boucle ne prend pas en compte la dernière valeur
+def present3(lst, e) :
+#   b=True 
+#  for i in range (0, len(lst), 1) :
+#      return (lst[i] == e) 
+   return (e in lst)
+
+#VERSION 4
+
+#Le premier while ne s'execute jamais car b est initialisé à False
+def present4(lst, e) :
+    b=False
+    i=0
+#    while (i<len(lst) and b) : 
+    while (i<len(lst) and not b) :
+        if (lst[i] == e) :
+            b=True
+        i += 1 
+    return (b)
+
+print("TESTS PRESENT")
+print("TEST 1")
+test_present(present1)
+print("TEST 2")
+test_present(present2)
+print("TEST 3")
+test_present(present3)
+print("TEST 4")
+test_present(present4)
            
         
 
