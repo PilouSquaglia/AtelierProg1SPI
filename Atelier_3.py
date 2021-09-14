@@ -692,7 +692,7 @@ def present3(lst, e) :
 
 #VERSION 4
 
-#Le premier while ne s'execute jamais car b est initialisé à False
+#Le  while ne s'execute jamais car b est initialisé à False, i ne s'incremente pas
 def present4(lst, e) :
     b=False
     i=0
@@ -703,18 +703,142 @@ def present4(lst, e) :
         i += 1 
     return (b)
 
-print("TESTS PRESENT")
-print("TEST 1")
-test_present(present1)
-print("TEST 2")
-test_present(present2)
-print("TEST 3")
-test_present(present3)
-print("TEST 4")
-test_present(present4)
+#print("TESTS PRESENT")
+#print("TEST 1")
+#test_present(present1)
+#print("TEST 2")
+#test_present(present2)
+#print("TEST 3")
+#test_present(present3)
+#print("TEST 4")
+#test_present(present4)
+
+def test_pos(pos:callable) -> bool:
+    """
+    admet en paramètres une liste d'entiers lst et un nombre entier e 
+et retourne un booléen True si l'élément e est présent dans la liste lst et False sinon
+
+    Parameters
+    ----------
+    pos : callable
+
+    Returns
+    -------
+   res : bool
+
+    """
+    #Test liste vide
+    res1=False
+    lst=[]
+    e=random.random()
+    test=pos(lst, e)
+    if test:
+        print("ECHEC : test liste vide")
+    else:
+        print("SUCCES : test liste vide")
+        res1=True
+    
+    #Tests sur plusieurs cas
+    
+    lst_test=[1, 5, 5, 5, 9, 11, 11, 15, 15, 15]
+    res2=False
+    e=lst_test[0]
+    test=pos(lst, e)
+    if test:
+        print("ECHEC : test debut")
+    else:
+        print("SUCCES : test debut")
+        res2=True
+        
+    res3=False    
+    e=lst_test[9]
+    test=pos(lst, e)
+    if test:
+        print("ECHEC : test fin")
+    else:
+        print("SUCCES : test fin")
+        res3=True
+    
+    res4=False    
+    e=lst_test[4]
+    test=pos(lst, e)
+    if test:
+        print("ECHEC : test milieu")
+    else:
+        print("SUCCES : test milieu")
+        res4=True
+     
+    res5=False    
+    e=10
+    test=pos(lst, e)
+    if test:
+        print("ECHEC : test absence")
+    else:
+        print("SUCCES : test absence")
+        res5=True
+        
+    if res1 and res2 and res3 and res4 and res5:
+        res=True
+    return res
            
         
+#VERSION 1
 
+#Il faut initialisé la liste lst_res avec une liste vide
+def pos1(lst, e) :
+#   lst_res = list(lst)
+    lst_res = [] 
+    for i in range (0, len(lst), 1) :
+        if (lst[i] == e) :
+            lst_res += [i]
+    return lst_res
+
+# VERSION 2
+
+
+def pos2(lst, e) :
+    lst_res = list(lst)
+    for i in range (0, len(lst), 1) :
+        if (lst[i] == e) :
+            lst_res[i] = i
+        else:
+            lst_res[i] = -1 
+    while -1 in lst_res:
+        lst_res.remove(-1)
+    return lst_res
+
+# VERSION 3
+def pos3(lst, e) :
+    nb= lst.count(e)
+    lst_res = [0]*nb
+    occ = 0 
+    for i in range (0, len(lst), 1) :
+        if (lst[i] == e) :
+#          lst_res.append(i) 
+            lst_res[occ] = i
+            occ += 1
+    return lst_res
+
+# VERSION 4
+def pos4(lst, e) :
+    nb= lst.count(e)
+    lst_res = [0]*nb
+    j=0
+    for i in range (0, len(lst), 1) :
+        if (lst[i] == e) :
+            lst_res[j]= i
+            j += 1 
+    return lst_res
+
+print("TESTS POS")
+print("TEST 1")
+test_pos(pos1)
+print("TEST 2")
+test_pos(pos2)
+print("TEST 3")
+test_pos(pos3)
+print("TEST 4")
+test_pos(pos4)
 
 
 
