@@ -22,4 +22,12 @@ avec la première lettre seulement en majuscule.
         DESCRIPTION.
 
     """
-    
+    ch_res=""
+    for e in str_arg:
+        print(e)
+        while e!=' ':
+            ch_res+=e.upper()
+            print(ch_res)
+    return ch_res
+
+print(full_name("bisgambiglia paul"))            

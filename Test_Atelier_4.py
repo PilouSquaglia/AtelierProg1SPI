@@ -10,7 +10,14 @@ def test_full_name():
     
     nom='squaglia pierre-louis'
     attendu='SQUAGLIA Pierre-louis'
-    res=full_name(nom)
-    test=attendu==res
+    res="#####ECHEC#####"
+    test=attendu==full_name(nom)
     
+    print("Test avec {}, attendu : {}".format(nom, attendu))
+    print("test")
+    
+    if test:
+        res="#####ECHEC#####"
+    return res
+        
     
