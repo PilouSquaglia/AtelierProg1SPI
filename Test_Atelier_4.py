@@ -7,6 +7,7 @@ Created on Tue Sep 14 11:38:04 2021
 
 from Atelier_4 import full_name
 from Atelier_4 import is_mail
+
 def test_full_name():
     
     nom='squaglia pierre-louis'
@@ -21,7 +22,7 @@ def test_full_name():
         res="#####SUCCES#####"
     return res
         
-print(test_full_name())
+#print(test_full_name())
 
 def test_is_mail():
     
@@ -31,9 +32,11 @@ def test_is_mail():
     "bisgambiglia_paulOuniv_corse.fr",
     "bisgambiglia_paul@univ_corsePOINTfr",
     "@univ_corse.fr",
-    "bisgambiglia_paul@univ_paris.fr"
+    "bisgambiglia_paul@.univ%corsefr"
+    
     ]
     for email in email_tests:
         print(is_mail(email))
         
-test_is_mail()
+#test_is_mail()
+

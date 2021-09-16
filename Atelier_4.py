@@ -30,7 +30,7 @@ avec la première lettre seulement en majuscule.
 
 
 
-print(full_name("bisgambiglia paul"))            
+#print(full_name("bisgambiglia paul"))            
 
 
 def is_mail(mail:str) -> str:
@@ -57,7 +57,7 @@ des codes suivants : (validité, code erreur)
     #est-ce que le corps est valide? (composé uniquement d'alphanum,
     # tirets et tirets bas, avec au moins 1 caractères et ne se finit pas par un point)
     if re.match("^[_a-z0-9A-Z-]{2,}(\.[_a-zA-Z0-9-]+)*$", string_elements[0]) is None:
-            return "[0, 1] le mail n’est pas valide, le corp n’est pas valide"
+            return "[0, 1] le mail n’est pas valide, le corps n’est pas valide"
         
 
     #"y a-t-il un point?"
@@ -66,31 +66,196 @@ des codes suivants : (validité, code erreur)
         return "[0, 4] le mail n’est pas valide, il manque le ."
 
     #le nom de domaine est-il "univ-corse" ?
-    if second_part[0] != "univ-corse":
+    if re.match("^[_a-z0-9A-Z-]{2,}(\.[_a-zA-Z0-9-]+)*$", second_part[0]) is None:
        
             return "[0, 3] le mail n’est pas valide, le domaine n’est pas valide"
 
-    return "[1, 38] le mail est valide"
+    return "[1, 0] le mail est valide"
 
 
 
 #Exercice 2
 
-def mots_Nlettres(list_words: list, n: int):
-    corrects = []
-    for s in list_words:
+def mots_Nlettres(lst_mot: list, n: int) -> list:
+    """
+    prend une liste de mots (lst_mot) en
+argument et qui renvoie la liste des mots contenant exactement n lettres.
+
+    Parameters
+    ----------
+    lst_mot : list
+    n : int
+        DESCRIPTION.
+
+    Returns
+    -------
+    res : list
+
+    """
+    res = []
+    for s in lst_mot:
         if len(s) == n:
-            corrects.append(s)
-    return corrects
+            res.append(s)
+    return res
 
+#print(mots_Nlettres(["jouer","bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour","finir", "aimer"], 5))
 
-def commence_par(mot: str, prefixe: str):
-    prefix_len = len(prefixe)
-    return mot[:prefix_len] == prefixe
+def commence_par(mot: str, prefixe: str) -> bool:
+    """
+    renvoie True si l'argument mot
+commence par prefixe et False sinon.
 
+    Parameters
+    ----------
+    mot : str
+    prefixe : str
 
-def finit_par(mot: str, suffixe: str):
+    Returns
+    -------
+    bool
+
+    """
+    prefixe_len = len(prefixe)
+    return mot[:prefixe_len] == prefixe
+
+#(commence_par("auevoir", "aure"))
+
+def finit_par(mot: str, suffixe: str) -> bool:
+    """
+    renvoie True si l'argument mot se termine
+par suffixe et False sinon.
+
+    Parameters
+    ----------
+    mot : str
+    suffixe : str
+
+    Returns
+    -------
+    bool
+
+    """
     suffixe_len = len(suffixe)
     return mot[-suffixe_len:] == suffixe
+
+#print(finit_par("aurevoir", "voi"))
+
+def finissent_par(lst_mot:list, suffixe:str) -> list:
+    """
+    renvoie la liste des mots présents
+dans la liste lst_mot qui se terminent par suffixe.
+
+    Parameters
+    ----------
+    lst_mot : list
+
+    suffixe : str
+
+    Returns
+    -------
+    res : list
+
+    """
+    res=[]
+    for i in lst_mot:
+       suffixe_len = len(suffixe)
+       if i[-suffixe_len:] == suffixe:
+            res.append(i)
+    return res
+   
+#print(finissent_par(["jouer","bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour","finir", "aimer"], "jour"))
+
+
+def commencent_par(lst_mot:list, prefixe:str) -> list:
+    """
+    renvoie la liste des mots présents
+dans la liste lst_mot qui se terminent par suffixe.
+
+    Parameters
+    ----------
+    lst_mot : list
+
+    suffixe : str
+
+    Returns
+    -------
+    res : list
+
+    """
+    res=[]
+    for i in lst_mot:
+       prefixe_len = len(prefixe)
+       if i[:prefixe_len] == prefixe:
+            res.append(i)
+    return res
+
+#print(commencent_par(["jouer","bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour","finir", "aimer"], "a"))
+
+
+def liste_mots (lst_mot:list, prefixe:str, suffixe:str, n:int) -> list:
+    """
+    renvoie la liste des mots
+présents dans lst_mot qui commencent par prefixe, se terminent par suffixe et contiennent
+exactement n lettres (sans boucle for, ni de if)
+
+    Parameters
+    ----------
+    lst_mot : list
+    prefixe : str
+    suffixe : str
+    n : int
+
+    Returns
+    -------
+    res : list
+
+    """
+    res=finissent_par(commencent_par(mots_Nlettres(lst_mot,n),prefixe),suffixe)
+    return res
+        
+#print(liste_mots(["jouer","bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour","finir", "aimer","aruoiryr"],"a","r",7))        
+    
+
+def dictionnaire(fichier:str) -> str:
+    """
+    admet en paramètre une chaine de
+caractères représentant un nom de fichier de texte (ex :littre.txt ) et renvoie la liste des mots
+présents dans ce fichier.
+
+    Parameters
+    ----------
+    fichier : str
+
+    Returns
+    -------
+    res : str
+
+    """
+    f=open(fichier+".txt","r")
+    c=f.readline() #lecture d'une ligne dans une chaine
+    # de caractères
+    print("** Contenu du fichier **")
+    while c!="" :
+        print(c)
+        c=f.readline()
+    print("** fin **")
+    
+
+#dictionnaire("littre")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
