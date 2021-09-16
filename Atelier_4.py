@@ -53,14 +53,14 @@ des codes suivants : (validité, code erreur)
 
     """
     string_elements = mail.split("@")
-
+    regex="^[_a-z0-9A-Z-]{2,}(\.[_a-zA-Z0-9-]+)*$"
 
     if not("@" in mail):
         return "[0, 2] le mail n’est pas valide, il manque l’@"
         
     #est-ce que le corps est valide? (composé uniquement d'alphanum,
     # tirets et tirets bas, avec au moins 1 caractères et ne se finit pas par un point)
-    if re.match("^[_a-z0-9A-Z-]{2,}(\.[_a-zA-Z0-9-]+)*$", string_elements[0]) is None:
+    if re.match(regex, string_elements[0]) is None:
             return "[0, 1] le mail n’est pas valide, le corps n’est pas valide"
         
 
@@ -71,7 +71,7 @@ des codes suivants : (validité, code erreur)
 
     #le nom de domaine est-il valide ? (composé uniquement d'alphanum,
     # tirets et tirets bas, avec au moins 1 caractères et ne se finit pas par un point)
-    if re.match("^[_a-z0-9A-Z-]{2,}(\.[_a-zA-Z0-9-]+)*$", second_part[0]) is None:
+    if re.match(regex, second_part[0]) is None:
        
             return "[0, 3] le mail n’est pas valide, le domaine n’est pas valide"
 
