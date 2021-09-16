@@ -26,12 +26,15 @@ avec la première lettre seulement en majuscule.
         DESCRIPTION.
 
     """
-    maj = str_arg.split(" ")
+    maj=str_arg.strip()
+    maj = maj.split(" ")
+    while '' in maj:
+        maj.remove('')
     return maj[0].upper() + " " + maj[1].capitalize()
 
 
 
-#print(full_name("bisgambiglia paul"))            
+print(full_name("bisgambiglia paul"))            
 
 
 def is_mail(mail:str) -> str:
@@ -66,7 +69,8 @@ des codes suivants : (validité, code erreur)
     if "." not in string_elements[1] or len(string_elements) != 2:
         return "[0, 4] le mail n’est pas valide, il manque le ."
 
-    #le nom de domaine est-il "univ-corse" ?
+    #le nom de domaine est-il valide ? (composé uniquement d'alphanum,
+    # tirets et tirets bas, avec au moins 1 caractères et ne se finit pas par un point)
     if re.match("^[_a-z0-9A-Z-]{2,}(\.[_a-zA-Z0-9-]+)*$", second_part[0]) is None:
        
             return "[0, 3] le mail n’est pas valide, le domaine n’est pas valide"
@@ -290,7 +294,6 @@ def outputStr(mot:str,lpos:list)->str:
             mot_out+="_ "
     return mot_out
 
-
 def runGame():
     """
     programme principal, lance le jeu du pendu
@@ -299,26 +302,44 @@ def runGame():
     None.
     """
     #liste de mots
-    MOTS=["bonjour","demain","bientot","matin","universite","pandemie","soleil","tableau",
-          "bouteille"]
+    MOTS=build_list("mots.txt")
     #elements de la potence
     PENDU=["","|______","| / \\ ","|  T","|  O", "|----]"]
     #initialisations
     ind_pendu=0 #pour affichage de la potence    
-    rd_int=random.randint(0,len(MOTS)-1)#choisit un entier aleatoire
-    mot=MOTS[rd_int]#selection aleatoire du mot    
+    #rd_int=random.randint(0,len(MOTS)-1)#choisit un entier aleatoire
+   #mot=MOTS[rd_int]#selection aleatoire du mot    
     lpos=[]
     
-    print(outputStr(mot, lpos))#affiche "_ _ _ _ _ _"
+    
     
     win=False
     erreurs=0
-    msg_fin="perdu :("
+    nb_coups_max=5
+    longueur_mot=0
+    
+    print("Difficulté 1 : mot -7 lettres")
+    print("Difficulté 2 : mot entre 6 et 9 lettres")
+    print("Difficulté 3 : mot plsu de 9 lettres")
+    
+    difficulte=int(input("Entrez le niveau de difficulté"))
+    
+    if(difficulte == 1):
+       longueur_mot = 6
+    elif(difficulte == 2):
+        longueur_mot = random.randint(6,9)
+    else:
+        longueur_mot = 9
+        
+    mot=select_word(build_dict(MOTS),longueur_mot)
+    
+    print(outputStr(mot, lpos))#affiche "_ _ _ _ _ _"
+    msg_fin="Perdu le mot était : "+str(mot)
     #boucle principale, saisie des lettre, mise a jour des erreurs et affichage de l'avancement,
     #controle de la condition de victoire
-    while not win and erreurs<5:
+    while not win and erreurs<nb_coups_max:
         print(erreurs, "erreur(s)")
-        print("Il reste : "+str(5-erreurs)+" coup(s)")
+        print("Il reste : "+str(nb_coups_max-erreurs)+" coup(s)")
         lettre=input("entrez une lettre: ").lower()
         new_lettre_pos=places_lettre(lettre, mot)
         if not new_lettre_pos:#la lettre n'est pas dans le mot, +1 erreur,
@@ -334,19 +355,25 @@ def runGame():
         #controle de la condition de victoire
         if res==mot:
             win=True
-            msg_fin="gagné!"
+            msg_fin="Gagné!"
             
     print(msg_fin)
         
     
 
-#runGame()  
-
 def build_list(fileName:str)->list:
     file=open(fileName,"r", encoding=("utf8"))
     content=file.readlines()
-    print(content)
-    file.close()
+    res=[]
+    for i in content:
+        part_1=i.split("\t")
+        capital=part_1[1].split("\n")
+        content=capital[0]
+        res.append(content)
+    return res
+    file.close() 
+
+
 
 #build_list("mots.txt")
 
@@ -397,12 +424,12 @@ def select_word(sorted_words:dict, word_len:int)->str:
     return sorted_words[word_len][nb_alea]
 
 
-dic={5:['paris'],6:['madrid','berlin'],7:['londres','newyork']}
-print(select_word(dic, 6))
+#dic={5:['paris'],6:['madrid','berlin'],7:['londres','newyork']}
+#print(select_word(dic, 6))
 
 
 
-
+#runGame() 
 
 
 

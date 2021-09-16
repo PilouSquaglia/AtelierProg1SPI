@@ -5,6 +5,9 @@ Created on Thu Sep  9 11:39:31 2021
 @author: Pilou
 """
 
+import matplotlib.pyplot as plt
+import random
+
 def somme1(L:[int]) -> int:
     
     """Admet en paramètre une liste
@@ -418,24 +421,24 @@ def separer(lst:list) -> list:
     
     Returns
     -------
-    lst_sep : list[int]
+    list[int]
 
     """
-    lst_sep=[]
-    lst_n=[]
-    lst_p=[]
-    i=0
-    while i<len(lst):
-        if lst[i]<0:
-            lst_sep.append(lst[i])
-        elif lst[i]==0:
-            lst_n.append(lst[i])
-        elif lst[i]>0:
-            lst_p.append(lst[i])
-        i+=1
-    lst_sep.extend(lst_n)
-    lst_sep.extend(lst_p)
-    return lst_sep
+    lst_neg=[]
+    lst_nul=[]
+    lst_pos=[]
+    
+    for elt in lst:
+        if elt<0:
+            lst_neg.append(elt)
+        elif elt==0:
+            lst_nul.append(elt)
+        else:
+            lst_pos.append(elt)
+    #lst_sep.extend(lst_nul)
+    #lst_sep.extend(lst_pos)
+    
+    return lst_neg+lst_nul+lst_pos
 
 #print(separer([-1, 2, 0, -3, 4, 6, -7]))                
         
@@ -456,7 +459,6 @@ liste d'entiers lst_h représentant l'histogramme de lst_f
     Returns
     -------
     lst_h : list[int]
-        DESCRIPTION.
 
     """
     lst_h=[]
@@ -484,14 +486,11 @@ Dans le cas contraire, elle renvoie False
 
     """
     lst_h=histo(lst_f)
-    cond=True
+    res=True
     i=0
-    while i<len(lst_h) and cond:
+    while i<len(lst_h) and res:
         if lst_h[i]>1:
-            res=False
-            cond=False
-        else:
-            res=True  
+            res=False 
         i+=1
     return res
     
@@ -513,14 +512,11 @@ surjection. Dans le cas contraire, elle renvoie False
 
     """   
     lst_h=histo(lst_f)    
-    cond=True
+    res=True
     i=0
-    while i<len(lst_h) and cond:
+    while i<len(lst_h) and res:
         if lst_h[i]<1:
             res=False
-            cond=False
-        else:
-            res=True  
         i+=1
     return res   
 
@@ -541,11 +537,7 @@ Dans le cas contraire, elle renvoie False
         DESCRIPTION.
 
     """       
-    if est_injective(lst_f) and est_surjective(lst_f):
-        res=True
-    else:
-        res=False
-    return res
+    return est_injective(lst_f) and est_surjective(lst_f)
 
 #print(est_bijective([4,0,2,1,3])) 
 
@@ -565,18 +557,28 @@ def affiche_histo(lst_f:list):
 
     """
     lst_h=histo(lst_f)
-    print("TEST HISTOGRAMME")
-    print("\nF = {}".format(lst_f))
-    print("\nHISTOGRAMME")
-    for i in range(0, len(lst_h)):
-        for j in range(0,lst_h[i]):
-            print("\n#")
-        print("|--| \n {}".format(i), end='')
-        
+    MAXOCC=val_max(lst_h) #nb de lignes
+    MAXVALEUR=val_max(lst_f) #nb de colonnes
+    print("HISTOGRAMME")
+    print(lst_f)
+    for ligne in range(MAXOCC):
+        print("\n") #retourne a la ligne a chaque iteration
+        for colonne in range(MAXVALEUR+1):
+            if lst_h[colonne]>=MAXOCC-ligne: #premiere ligne: MAXOCC-0, deuxieme ligne: MAXOCC-1, ...
+                print("  # ",end='') 
+            else:
+                print('    ',end='')
+    #affichage des |--|
+    for i in range(MAXVALEUR+1):
+            print('|--|',end='')
+    print("\n") #retour a la ligne
+    #affichage des valeurs de l'axe x
+    for j in range(MAXVALEUR+1):
+            print("  {} ".format(j),end='')
+            
     
 #affiche_histo([1, 5, 5, 5, 9, 11, 11, 15, 15, 15])
-    
-import matplotlib.pyplot as plt           
+               
 
 def affiche_histo_plt(lst_f:list) -> bool:
     
@@ -587,7 +589,6 @@ def affiche_histo_plt(lst_f:list) -> bool:
     
 #Exercice 5
 
-import random
 
 def test_present(present:callable) -> bool:
     """
@@ -830,6 +831,7 @@ def pos4(lst, e) :
             j += 1 
     return lst_res
 
+"""
 print("TESTS POS")
 print("TEST 1")
 test_pos(pos1)
@@ -839,7 +841,7 @@ print("TEST 3")
 test_pos(pos3)
 print("TEST 4")
 test_pos(pos4)
-
+"""
 
 
 
