@@ -231,7 +231,7 @@ présents dans ce fichier.
     res : str
 
     """
-    f=open(fichier+".txt","r")
+    f=open(fichier+".txt","r",encoding=("utf8"))
     c=f.readline() #lecture d'une ligne dans une chaine
     # de caractères
     print("** Contenu du fichier **")
