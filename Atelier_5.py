@@ -32,6 +32,8 @@ gen_list_random_int génèrera par défaut 10 nombres compris entre 0 (inclus) e
 
 #print(gen_list_random())
 
+#Exercice 2
+
 def mix_list(list_to_mix:list) -> list:
     """
     prend en paramètre une liste list_to_mix de n'importe quoi
@@ -60,10 +62,104 @@ potentiellement triée et qui retourne la liste mélangée
 
 
 
-lst_test=gen_list_random()
-print(lst_test)
-print(mix_list(lst_test))
+#lst_test=gen_list_random()
+#print(lst_test)
+#print(mix_list(lst_test))
 
 
-        
-        
+#Exercice 3
+
+       
+def choose_element_list(list_in_which_to_choose:list) -> any:
+    """
+    prend en paramètre une liste
+    list_in_which_to_choose de n'importe quoi et qui retourne un élément de cette liste choisi au hasard
+
+    Parameters
+    ----------
+    list_in_which_to_choose : list
+    Returns
+    -------
+    res : any
+
+    """       
+    longueur=len(list_in_which_to_choose)
+    ind_elt_random=rd.randint(0,longueur-1) #On choisi un indice aléatoire compris entre 0 et l'indice max de la liste
+    res=list_in_which_to_choose[ind_elt_random]    
+    return res
+
+#print(choose_element_list([6, 6, 3, 2, 8, 5, 4, 5, 4, 5]))
+#print(choose_element_list(["test","test2","test3","test4","test5"]))
+
+def extract_elements_list(list_in_which_to_choose:list, int_nbr_of_element_to_extract:int) -> list:
+    """
+    prend en paramètre une liste
+    list_in_which_to_choose de n'importe quoi, un int_nbr_of_element_to_extract et qui retourne
+    une liste composée de int_nbr_of_element_to_extract éléments de la liste de départ choisis au
+    hasard
+
+    Parameters
+    ----------
+    list_in_which_to_choose : list
+    int_nbr_of_element_to_extract : int
+
+    Returns
+    -------
+    lst_res : list
+
+    """
+    longueur=len(list_in_which_to_choose)
+    lst_res=[]
+    lst_indice=[]
+    for indice in range(0, int_nbr_of_element_to_extract): #Boucle servant à répéter l'opération int_nbr_of_element_to_extract fois
+         ind_elt_random=rd.randint(0,longueur-1) #On choisi un indice aléatoire compris entre 0 et l'indice max de la liste 
+         while ind_elt_random in lst_indice: #Verification que l'indice n'est pas deja utilisé en verfiant qu'il n'est pas dans a liste qui contient les indices utilisé
+             ind_elt_random=rd.randint(0,longueur-1)
+         lst_indice.append(ind_elt_random) #On l'ajoute dans une liste pour ne pas le reutilisé
+         elt=list_in_which_to_choose[ind_elt_random] #On prend un element de la liste avec l'indice choisi aléatoirement
+         lst_res.append(elt)
+    return lst_res
+
+#print(extract_elements_list(["test","test2","test3","test4","test5"], 2))
+         
+             
+         
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
