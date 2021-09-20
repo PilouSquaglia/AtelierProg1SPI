@@ -162,10 +162,10 @@ dans la liste lst_mot qui se terminent par suffixe.
 
     """
     res=[]
-    for i in lst_mot:
+    for mot in lst_mot:
        suffixe_len = len(suffixe)
-       if i[-suffixe_len:] == suffixe:
-            res.append(i)
+       if mot[-suffixe_len:] == suffixe:
+            res.append(mot)
     return res
    
 #print(finissent_par(["jouer","bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour","finir", "aimer"], "jour"))
@@ -188,10 +188,10 @@ dans la liste lst_mot qui se terminent par suffixe.
 
     """
     res=[]
-    for i in lst_mot:
+    for mot in lst_mot:
        prefixe_len = len(prefixe)
-       if i[:prefixe_len] == prefixe:
-            res.append(i)
+       if mot[:prefixe_len] == prefixe:
+            res.append(mot)
     return res
 
 #print(commencent_par(["jouer","bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour","finir", "aimer"], "a"))
@@ -344,10 +344,11 @@ def runGame():
         new_lettre_pos=places_lettre(lettre, mot)
         if not new_lettre_pos:#la lettre n'est pas dans le mot, +1 erreur,
             erreurs+=1
-            ind_pendu+=1 #on rajoute un element a la potence            
-        lpos+=(new_lettre_pos)#mise a jour des lettres révélées
-        mot_out=outputStr(mot, lpos)#mise a jour du mot avec le nouveau lpos
-        print(mot_out)
+            ind_pendu+=1 #on rajoute un element a la potence       
+        else:
+            lpos+=(new_lettre_pos)#mise a jour des lettres révélées
+            mot_out=outputStr(mot, lpos)#mise a jour du mot avec le nouveau lpos
+            print(mot_out)
         #affichage du pendu
         for i in range(ind_pendu,0,-1):
             print(PENDU[i])
@@ -393,11 +394,12 @@ automatiquement un dictionnaire
 
     """
     dictionnaire_mots={}
-    for i in lst:
-        if not len(i) in dictionnaire_mots:
-            dictionnaire_mots[len(i)]=[i]
+    for mot in lst:
+        len_mot=len(mot)
+        if not len_mot in dictionnaire_mots:
+            dictionnaire_mots[len_mot]=[mot]
         else:
-            dictionnaire_mots[len(i)].append(i)
+            dictionnaire_mots[len_mot].append(mot)
     return dictionnaire_mots
 
 #print(build_dict(["bonjour","demain","bientot","matin","universite","pandemie","soleil","tableau","bouteille"]))
