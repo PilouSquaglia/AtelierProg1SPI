@@ -98,9 +98,9 @@ argument et qui renvoie la liste des mots contenant exactement n lettres.
 
     """
     res = []
-    for s in lst_mot:
-        if len(s) == n:
-            res.append(s)
+    for mot in lst_mot:
+        if len(mot) == n:
+            res.append(mot)
     return res
 
 #print(mots_Nlettres(["jouer","bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour","finir", "aimer"], 5))

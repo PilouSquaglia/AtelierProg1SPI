@@ -7,6 +7,8 @@ Created on Fri Sep 17 08:34:34 2021
 
 import random as rd
 import time 
+import matplotlib.pyplot as plt
+import numpy as np
 
 def gen_list_random(int_nbr:int=10,int_binf:int=0, int_bsup:int=9) -> list:
     """
@@ -122,8 +124,165 @@ def extract_elements_list(list_in_which_to_choose:list, int_nbr_of_element_to_ex
 
 #print(extract_elements_list(["test","test2","test3","test4","test5"], 2))
          
-             
-         
+#Exercice 5
+
+def perf_mix(f1:callable, f2:callable, list_int:list, iteration:int) -> tuple:
+    """
+    permet de calculer le temps d’exécution moyen des deux fonctions
+de mélange (mix_list et random.shuffle) passées en paramètre dans une même configuration
+
+    Parameters
+    ----------
+    f1 : callable , 1ère fonction à tester
+    f2 : callable , 2ème fonction à tester
+    list_int : list , liste d’entiers représentant les tailles de liste pour lesquelles on effectue la comparaison. 
+    iteration : int , nombre d'opération à effectuer
+
+    Returns
+    -------
+    res : tuple 
+
+    """
+    res=()
+    lst_perf_f1=[]
+    lst_perf_f2=[]
+    
+    for taille in list_int:
+        print("Test en cours", taille)
+        moy_f1=0
+        moy_f2=0
+        lst_test=gen_list_random(taille)
+        for iteration in range(iteration):
+            #test pour f1
+            start_pc = time.perf_counter()
+            f1(lst_test)
+            end_pc = time.perf_counter()
+            temps = end_pc-start_pc
+            moy_f1+=temps
+            #test pour f2
+            start_pc = time.perf_counter()
+            f2(lst_test)
+            end_pc = time.perf_counter()
+            temps = end_pc-start_pc
+            moy_f2+=temps 
+        moy_f1/=iteration
+        lst_perf_f1.append(moy_f1)
+        moy_f2/=iteration
+        lst_perf_f2.append(moy_f2)
+    res+=(lst_perf_f1,lst_perf_f2)
+    #matplotlib
+    fig, ax = plt.subplots()
+    ax.plot(list_int,lst_perf_f1, 'r*-', label='mix_list')
+    ax.plot(list_int,lst_perf_f2,'g*-', label='shuffle')
+    ax.set(xlabel='taille de liste', ylabel='temps execution',
+     title='Fonctions identité, mix_list et shuffle')
+    ax.legend(loc='upper center', shadow=True, fontsize='x-large')
+    #fig.savefig("test.png")
+    plt.show()
+    return res
+
+
+     
+#print(perf_mix(mix_list, rd.shuffle, [10, 500, 5000, 10000], 10))
+
+        
+def perf_extract(f1:callable, f2:callable, list_int:list, iteration:int) -> tuple:
+    """
+    permet de calculer le temps d’exécution moyen des deux fonctions permettant d'extraire
+    aléatoirement int_nbr_of_element_to_extract éléments
+
+    Parameters
+    ----------
+    f1 : callable , 1ère fonction à tester
+    f2 : callable , 2ème fonction à tester
+    list_int : list , liste d’entiers représentant les tailles de liste pour lesquelles on effectue la comparaison. 
+    iteration : int , nombre d'opération à effectuer
+
+    Returns
+    -------
+    res : tuple 
+    
+    """
+    res=()
+    lst_perf_f1=[]
+    lst_perf_f2=[]
+    
+    for taille in list_int:
+        print("Test en cours", taille)
+        moy_f1=0
+        moy_f2=0
+        lst_test=gen_list_random(taille)
+        for iteration in range(iteration):
+            #test pour f1
+            start_pc = time.perf_counter()
+            f1(lst_test, 5)
+            end_pc = time.perf_counter()
+            temps = end_pc-start_pc
+            moy_f1+=temps
+            #test pour f2
+            start_pc = time.perf_counter()
+            f2(lst_test, 5)
+            end_pc = time.perf_counter()
+            temps = end_pc-start_pc
+            moy_f2+=temps 
+        moy_f1/=iteration
+        lst_perf_f1.append(moy_f1)
+        moy_f2/=iteration
+        lst_perf_f2.append(moy_f2)
+    res+=(lst_perf_f1,lst_perf_f2)
+    #matplotlib
+    fig, ax = plt.subplots()
+    ax.plot(list_int,lst_perf_f1, 'r*-', label='mix_extract')
+    ax.plot(list_int,lst_perf_f2,'g*-', label='sample')
+    ax.set(xlabel='taille de liste', ylabel='temps execution',
+     title='Fonctions identité, mix_list et shuffle')
+    ax.legend(loc='upper center', shadow=True, fontsize='x-large')
+    #fig.savefig("test.png")
+    plt.show()
+    return res
+
+
+     
+#print(perf_extract(extract_elements_list, rd.sample, [10, 500, 5000, 10000], 10))  
+
+#Exercice 6
+
+def sort_list(lst:list) -> list:
+    """
+    prend en paramètre une liste d'élément et retourne, sans
+    modifier la liste de départ, une nouvelle liste constituée des éléments de la liste de départ triés par ordre
+    croissant.
+
+    Parameters
+    ----------
+    lst : list , liste à trier
+    Returns
+    -------
+    res : list , liste triée
+
+    """
+    longueur=len(lst)
+    if longueur==0:
+        res=[]
+    else:
+        pivot=lst[0]
+        plus_petits=[]
+        for e in lst:
+            if e<pivot:
+                plus_petits.append(e)
+        plus_grands=[]
+        for e in lst[1:]:
+            if e>=pivot:
+                plus_grands.append(e)
+        res=sort_list(plus_petits)+[pivot]+sort_list(plus_grands)
+    return res
+
+
+#lst_test=[4, 3, 5, 0]
+#print(sort_list(lst_test))         
+    
+    
+    
     
     
     
